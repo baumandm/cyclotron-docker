@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mongodata:
+    image: mongo:3.4
+    volumes:
+      - /data/db
+    command: --break-mongo
+  mongo:
+    image: mongo:3.4
+    depends_on:
+      - mongodata
+    volumes_from:
+      - mongodata
+    ports:
+      - "27017:27017"
+    command: --smallfiles --rest --httpinterface
+  cyclotron:
+    container_name: cyclotron
+    build: .
+    links:
+      - mongo
+    ports:
+      - "777:777"
+      - "8077:8077"
+    depends_on:
+      - mongo
