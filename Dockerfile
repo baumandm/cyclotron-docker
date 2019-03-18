@@ -5,7 +5,7 @@ MAINTAINER Dave Bauman baumandm@gmail.com
 RUN apt-get update
 
 # Install dependencies
-RUN apt-get install -y bzip2 curl git nano supervisor wget
+RUN apt-get install -y bzip2 curl git nano supervisor wget gnupg2
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add Cyclotron Nginx configuration file
